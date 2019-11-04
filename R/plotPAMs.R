@@ -28,7 +28,7 @@
 #' 
 #' @examples 
 #' # Remove outliers
-#  predictors = c("logFrequency", "Length", "logOLD20", "SND20") 
+#' predictors = c("logFrequency", "Length", "logOLD20", "SND20") 
 #' ld = removeOutliers(ld, predictors)
 #' ld = na.omit(ld)
 #' 

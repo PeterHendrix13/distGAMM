@@ -27,8 +27,9 @@ Plot the results of a series of QGAM models (Fasiolo et al., 2017)
 }
 \examples{
 # Remove outliers from the ld data set, which contains lexical 
-decision latencies from the British Lexicon Project (Keuleers 
-et al, 2012)
+# decision latencies from the British Lexicon Project (Keuleers 
+# et al, 2012)
+predictors = c("logFrequency", "Length", "logOLD20", "SND20")
 ld = removeOutliers(ld, predictors)
 ld = na.omit(ld)
 

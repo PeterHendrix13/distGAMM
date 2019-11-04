@@ -17,9 +17,9 @@
 #'
 #' @examples
 #' # Remove outliers from the ld data set, which contains lexical 
-#' decision latencies from the British Lexicon Project (Keuleers 
-#' et al, 2012)
-#  predictors = c("logFrequency", "Length", "logOLD20", "SND20")
+#' # decision latencies from the British Lexicon Project (Keuleers 
+#' # et al, 2012)
+#' predictors = c("logFrequency", "Length", "logOLD20", "SND20")
 #' ld = removeOutliers(ld, predictors)
 #' ld = na.omit(ld)
 #' 
