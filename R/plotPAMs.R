@@ -1,6 +1,6 @@
 #' Plot PAM
 #'
-#' Plot the results of a series of PAM model (Bender & Scheipl, 2018)
+#' Plot the results of a PAM model (Bender & Scheipl, 2018)
 #' @param
 #' model A PAM model.
 #' @param
@@ -42,22 +42,22 @@
 #'              s(Length,k=4) + ti(tend,Length,k=c(4,4)) + 
 #'              s(logOLD20,k=4) + ti(tend,logOLD20,k=c(4,4)) + 
 #'              s(SND20,k=4) + ti(tend,SND20,k=c(4,4)),
-#'              data = ped, offset = offset, family = poisson(),control = gam.control(nthreads=10))
+#'              data = ped, offset = offset, family = poisson())
 #' 
 #' # Plot frequency effect
-#' plotPAMs(model = pam_ld, data = ld, predictor="logFrequency")
+#' plotPAM(model = pam_ld, data = ld, predictor="logFrequency")
 #' 
 #' @references 
 #' Bender, A. and Scheipl, F. (2018). pammtools: Piece-wise exponential
-#'  additive mixed modeling tools. arXiv:1806.01042
+#' additive mixed modeling tools. arXiv:1806.01042
 #' 
 #' @export
 
 # Plot PAM results        
-plotPAMs = function(model, data, predictor = "logFrequency", response = "RT", 
-                    se = 2, area = FALSE, num_grid = 100,
-                    pallet = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(500),
-                    levs = NA, rugx=TRUE, rugy=TRUE, main = NA, xlab = NA, ylab = NA, ...) {
+plotPAM = function(model, data, predictor = "logFrequency", response = "RT", 
+                   se = 2, area = FALSE, num_grid = 100,
+                   pallet = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(500),
+                   levs = NA, rugx=TRUE, rugy=TRUE, main = NA, xlab = NA, ylab = NA, ...) {
   
   # Get plot data
   tmp = tempfile()
