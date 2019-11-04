@@ -4,8 +4,8 @@
 \alias{plotPAM}
 \title{Plot PAM}
 \usage{
-plotPAM(model, data, predictor = "logFrequency", response = "RT",
-  se = 2, area = FALSE, num_grid = 100,
+plotPAM(model, predictor, data, response = "RT", se = 2,
+  area = FALSE, num_grid = 100,
   pallet = colorRampPalette(rev(brewer.pal(n = 7, name =
   "RdYlBu")))(500), levs = NA, rugx = TRUE, rugy = TRUE, main = NA,
   xlab = NA, ylab = NA, ...)
@@ -13,12 +13,12 @@ plotPAM(model, data, predictor = "logFrequency", response = "RT",
 \arguments{
 \item{model}{A PAM model.}
 
+\item{predictor}{The predictor to be plotted. This predictor needs to be present in the fitted 
+model, as well as in data.}
+
 \item{data}{The data the PAM model was fit to. Needs to include the response variable in the task, 
 as well as all predictors in these models. Note: this is the data frame in its raw format, 
 not the data frame converted to the piece-wise exponential data format.}
-
-\item{predictor}{The predictor to be plotted. This predictor needs to be present in the fitted 
-model, as well as in data.}
 
 \item{response}{The name of the response variable in data.}
 

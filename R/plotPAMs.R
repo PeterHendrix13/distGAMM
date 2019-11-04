@@ -57,7 +57,7 @@
 #' @export
 
 # Plot PAM results        
-plotPAM = function(model, data, predictor = "logFrequency", response = "RT", 
+plotPAM = function(model, predictor, data, response = "RT", 
                    se = 2, area = FALSE, num_grid = 100,
                    pallet = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(500),
                    levs = NA, rugx = TRUE, rugy = TRUE, main = NA, xlab = NA, ylab = NA, 
