@@ -50,7 +50,7 @@ cut_points = as.numeric(quantile(ld$RT[which(ld$RT <= 1085 &
 ped = split_data(Surv(RT, status)~., data = ld, id = "id",
                    cut = cut_points)
 
-Run PAM (warning: computationally heavy)
+# Run PAM (warning: computationally heavy)
 pam_ld = gam(ped_status ~ s(tend) + 
              s(logFrequency) + ti(tend, logFrequency) + 
              s(Length) + ti(tend, Length) + 

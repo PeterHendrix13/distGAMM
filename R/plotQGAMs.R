@@ -54,7 +54,7 @@
 
 # Plot quantiles
 plotQGAMs = function(models, predictor, data,
-                     cols = c("#000080","#1A1A9A","#3333B3","#4D4DCD","#6666E6"), 
+                     cols = c("#3C7A5B", "#468E6A","#50A379","#5AB788","#65CC98"), 
                      se = 2, xlab = NA, ylab = NA, main = NA, ylim = NA, ...) {
 
   # Retrieve predictors from the model
