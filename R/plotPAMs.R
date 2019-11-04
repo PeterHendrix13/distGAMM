@@ -51,7 +51,7 @@
 #' plotPAM(model = pam_ld, data = ld, predictor = "logFrequency")
 #' 
 #' @references 
-#' Bender, A. and Scheipl, F. (2018). pammtools: Piece-wise 
+#' Bender, A. & Scheipl, F. (2018). pammtools: Piece-wise 
 #' exponential additive mixed modeling tools. arXiv:1806.01042
 #' 
 #' @export
@@ -129,10 +129,12 @@ plotPAM = function(model, data, predictor = "logFrequency", response = "RT",
   
   # Add rug
   if(rugx) {
-    suppressWarnings(rug(quantile(data[,response], seq(0, 1, by = 0.005)), side = 1))
+    suppressWarnings(rug(quantile(data[,response], seq(0, 1, by = 0.005), na.rm = TRUE),
+      side = 1))
   }
   if(rugy) {
-    suppressWarnings(rug(quantile(data[,predictor], seq(0, 1, by = 0.005)),side = 2))
+    suppressWarnings(rug(quantile(data[,predictor], seq(0, 1, by = 0.005), na.rm = TRUE),
+      side = 2))
   }
 
 }

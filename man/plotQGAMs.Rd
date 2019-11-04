@@ -29,7 +29,7 @@ Plot the results of a series of QGAM models (Fasiolo et al., 2017)
 # Remove outliers from the ld data set, which contains lexical 
 # decision latencies from the British Lexicon Project (Keuleers 
 # et al, 2012)
-predictors = c("logFrequency", "Length", "logOLD20", "SND20")
+predictors = c("RT", "logFrequency", "Length", "logOLD20", "SND20")
 ld = removeOutliers(ld, predictors)
 ld = na.omit(ld)
 
@@ -52,7 +52,7 @@ plotQGAMs(qgams, "logFrequency", ld)
 
 }
 \references{
-Fasiolo M., Goude Y., Nedellec R. and Wood S. N. (2017). Fast
+Fasiolo M., Goude Y., Nedellec R., & Wood S. N. (2017). Fast
 calibrated additive quantile regression. URL: 
 https://arxiv.org/abs/1707.03307.
 
