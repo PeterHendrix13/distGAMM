@@ -54,14 +54,3 @@
 #' Timed picture naming: Extended norms and validation against previous studies. Behavior Research Methods, 
 #' Instruments, & Computers, 35(4), 621-633.
 "pn"
-
-
-#' Lexical decision PAM
-#'
-#' PAM fit to the lexical decision data in the British Lexicon Project (Keuleers et al., 2012)
-#' 
-#' @source Keuleers, E., Lacey, P., Rastle, K., & Brysbaert, M. (2012). The British Lexicon 
-#' Project: Lexical decision data for 28,730 monosyllabic and disyllabic English words. 
-#' Behavior Research Methods, 44(1), 287-304.
-"pam_ld"
-
