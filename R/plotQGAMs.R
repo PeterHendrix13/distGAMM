@@ -16,31 +16,39 @@
 #' se The number of standard errors for the confidence intervals. Default: 2 (i.e., 95\% confidence intervals)
 #'
 #' @examples
-#' # Remove outliers from the ld data set, which contains lexical decision latencies from the British Lexicon Project (Keuleers et al, 2012)
-#' ld = removeOutliers(ld, c("logFrequency","Length","logOLD20","SND20"))
+#' # Remove outliers from the ld data set, which contains lexical 
+#' decision latencies from the British Lexicon Project (Keuleers 
+#' et al, 2012)
+#  predictors = c("logFrequency", "Length", "logOLD20", "SND20")
+#' ld = removeOutliers(ld, predictors)
 #' ld = na.omit(ld)
 #' 
 #' # Tune learning rate for median
-#' tune = tuneLearnFast(RT ~ s(logFrequency) + s(Length) + s(logOLD20) + s(SND20),data = ld, qu = 0.5)
+#' tune = tuneLearnFast(RT ~ s(logFrequency) + s(Length) + 
+#'                           s(logOLD20) + s(SND20),
+#'                      data = ld, qu = 0.5)
 #' sigpar = tune$lsig
 #' 
 #' # Define quantiles
 #' quants = c(0.10,0.25,0.50,0.75,0.90)
 #' 
 #' # Run qgam models
-#' qgams = mqgam(RT ~ s(logFrequency) + s(Length) + + s(logOLD20) + s(SND20), data = ld,
-#'                    qu = quants, lsig = sigpar)
+#' qgams = mqgam(RT ~ s(logFrequency) + s(Length) + s(logOLD20) + 
+#'                    s(SND20),
+#'                    data = ld, qu = quants, lsig = sigpar)
 #' 
 #' # Plot effect of frequency at quantiles
 #' plotQGAMs(qgams, "logFrequency", ld)
 #' 
 #' @references 
 #' Fasiolo M., Goude Y., Nedellec R. and Wood S. N. (2017). Fast
-#'  calibrated additive quantile regression. URL: https://arxiv.org/abs/1707.03307.
+#' calibrated additive quantile regression. URL: 
+#' https://arxiv.org/abs/1707.03307.
 #' 
-#' Keuleers, E., Lacey, P., Rastle, K., & Brysbaert, M. (2012). The British Lexicon 
-#' Project: Lexical decision data for 28,730 monosyllabic and disyllabic English words. 
-#' Behavior Research Methods, 44(1), 287-304.
+#' Keuleers, E., Lacey, P., Rastle, K., & Brysbaert, M. (2012). 
+#' The British Lexicon Project: Lexical decision data for 28,730 
+#' monosyllabic and disyllabic English words. Behavior Research 
+#' Methods, 44(1), 287-304.
 #' 
 #' @export
 
@@ -57,15 +65,17 @@ plotQGAMs = function(models, predictor, data,
   data = na.omit(data)
   
   # Make data frame for model predictions
-  dfr = data.frame(predictor = seq(min(data[,predictor]),max(data[,predictor]),length.out=100))
+  dfr = data.frame(predictor = seq(min(data[,predictor]), max(data[,predictor]),
+          length.out = 100))
   colnames(dfr) = predictor
   for(i in 1:length(preds)) {
     if(!(preds[i]%in%colnames(dfr))) {
       if(is.numeric(data[,preds[i]])) {
-        dfr[,preds[i]] = mean(data[,preds[i]],na.rm=TRUE)
+        dfr[,preds[i]] = mean(data[,preds[i]], na.rm = TRUE)
       } else {
-        diff = abs(mean(pn[,names(models$model[1])], na.rm=TRUE) - 
-                   tapply(pn[,names(models$model[1])],pn[,preds[i]],FUN=function(x){mean(x,na.rm=T)}))
+        diff = abs(mean(pn[,names(models$model[1])], na.rm = TRUE) - 
+                   tapply(pn[,names(models$model[1])], pn[,preds[i]], 
+                          FUN = function(x){mean(x,na.rm = T)}))
         dfr[,preds[i]] = names(diff[which(diff==min(diff))])
       }
     }
@@ -82,8 +92,9 @@ plotQGAMs = function(models, predictor, data,
 
   # Define ylimit for the plot
   if(is.na(ylim)) {
-    ylimit = range(unlist(lapply(preds,FUN=function(x){c(range(x$fit+se*x$se.fit),range(x$fit-se*x$se.fit))})))
-    ylimit[1] = ylimit[1]*0.95; ylimit[2] = ylimit[2]*1.05
+    ylimit = range(unlist(lapply(preds, FUN = function(x){c(range(x$fit + se*x$se.fit),
+      range(x$fit - se*x$se.fit))})))
+    ylimit[1] = ylimit[1] * 0.95; ylimit[2] = ylimit[2] * 1.05
   } else {
     ylimit = ylim
   }
@@ -94,19 +105,20 @@ plotQGAMs = function(models, predictor, data,
   xlabel = ifelse(is.na(xlab), predictor, xlab)
 
   # Set up plot
-  plot(dfr[,predictor],preds[[i]]$fit,ylim=ylimit,col=cols[i], type="n",
+  plot(dfr[,predictor], preds[[i]]$fit, ylim = ylimit, col = cols[i], type = "n",
        ylab = ylabel, xlab = xlabel, main = mainlab, ...)
   
   # Plot quantiles
   for(q in 1:length(models$fit)) {
-    lines(dfr[,predictor],preds[[q]]$fit,col=cols[i])
-    polygon(c(dfr[,predictor],rev(dfr[,predictor])),
-            c(preds[[q]]$fit + se * preds[[q]]$se.fit,rev(preds[[q]]$fit - se * preds[[q]]$se.fit)),
-            col=paste(cols[q],"66",sep=""), border=NA)
+    lines(dfr[,predictor], preds[[q]]$fit, col = cols[i])
+    polygon(c(dfr[,predictor], rev(dfr[,predictor])),
+            c(preds[[q]]$fit + se * preds[[q]]$se.fit, 
+              rev(preds[[q]]$fit - se * preds[[q]]$se.fit)),
+            col = paste(cols[q], "66", sep = ""), border = NA)
   }
   
   # Add rug
-  suppressWarnings(rug(as.numeric(quantile(data[,predictor],seq(0,1,length.out=200))), side = 1))
+  suppressWarnings(rug(as.numeric(quantile(data[,predictor], seq(0, 1, length.out = 200))),
+    side = 1))
   
-
 }

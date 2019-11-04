@@ -40,27 +40,29 @@ Plot the results of a PAM model (Bender & Scheipl, 2018)
 }
 \examples{
 # Remove outliers
-ld = removeOutliers(ld, c("logFrequency","Length","logOLD20","SND20"))
+ld = removeOutliers(ld, predictors)
 ld = na.omit(ld)
 
 # Prepare data in exponential data format
 ld$status = 1
-cut_points = as.numeric(quantile(ld$RT[which(ld$RT <= 1085 &  ld$RT >= 500)],seq(0,1,by=0.02)))
-ped = split_data(Surv(RT, status)~., data = ld, id = "id",cut=cut_points)
+cut_points = as.numeric(quantile(ld$RT[which(ld$RT <= 1085 & 
+               ld$RT >= 500)],seq(0, 1, by = 0.02)))
+ped = split_data(Surv(RT, status)~., data = ld, id = "id",
+                   cut = cut_points)
 
-Run PAM (warning: computationally heavy!)
+Run PAM (warning: computationally heavy)
 pam_ld = gam(ped_status ~ s(tend) + 
-             s(logFrequency,k=4) + ti(tend,logFrequency,k=c(4,4)) + 
-             s(Length,k=4) + ti(tend,Length,k=c(4,4)) + 
-             s(logOLD20,k=4) + ti(tend,logOLD20,k=c(4,4)) + 
-             s(SND20,k=4) + ti(tend,SND20,k=c(4,4)),
+             s(logFrequency) + ti(tend, logFrequency) + 
+             s(Length) + ti(tend, Length) + 
+             s(logOLD20) + ti(tend, logOLD20) + 
+             s(SND20) + ti(tend, SND20),
              data = ped, offset = offset, family = poisson())
 
 # Plot frequency effect
-plotPAM(model = pam_ld, data = ld, predictor="logFrequency")
+plotPAM(model = pam_ld, data = ld, predictor = "logFrequency")
 
 }
 \references{
-Bender, A. and Scheipl, F. (2018). pammtools: Piece-wise exponential
-additive mixed modeling tools. arXiv:1806.01042
+Bender, A. and Scheipl, F. (2018). pammtools: Piece-wise 
+exponential additive mixed modeling tools. arXiv:1806.01042
 }

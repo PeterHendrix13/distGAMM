@@ -26,20 +26,25 @@ these colors.}
 Plot the results of a series of QGAM models (Fasiolo et al., 2017)
 }
 \examples{
-# Remove outliers from the ld data set, which contains lexical decision latencies from the British Lexicon Project (Keuleers et al, 2012)
-ld = removeOutliers(ld, c("logFrequency","Length","logOLD20","SND20"))
+# Remove outliers from the ld data set, which contains lexical 
+decision latencies from the British Lexicon Project (Keuleers 
+et al, 2012)
+ld = removeOutliers(ld, predictors)
 ld = na.omit(ld)
 
 # Tune learning rate for median
-tune = tuneLearnFast(RT ~ s(logFrequency) + s(Length) + s(logOLD20) + s(SND20),data = ld, qu = 0.5)
+tune = tuneLearnFast(RT ~ s(logFrequency) + s(Length) + 
+                          s(logOLD20) + s(SND20),
+                     data = ld, qu = 0.5)
 sigpar = tune$lsig
 
 # Define quantiles
 quants = c(0.10,0.25,0.50,0.75,0.90)
 
 # Run qgam models
-qgams = mqgam(RT ~ s(logFrequency) + s(Length) + + s(logOLD20) + s(SND20), data = ld,
-                   qu = quants, lsig = sigpar)
+qgams = mqgam(RT ~ s(logFrequency) + s(Length) + s(logOLD20) + 
+                   s(SND20),
+                   data = ld, qu = quants, lsig = sigpar)
 
 # Plot effect of frequency at quantiles
 plotQGAMs(qgams, "logFrequency", ld)
@@ -47,9 +52,11 @@ plotQGAMs(qgams, "logFrequency", ld)
 }
 \references{
 Fasiolo M., Goude Y., Nedellec R. and Wood S. N. (2017). Fast
- calibrated additive quantile regression. URL: https://arxiv.org/abs/1707.03307.
+calibrated additive quantile regression. URL: 
+https://arxiv.org/abs/1707.03307.
 
-Keuleers, E., Lacey, P., Rastle, K., & Brysbaert, M. (2012). The British Lexicon 
-Project: Lexical decision data for 28,730 monosyllabic and disyllabic English words. 
-Behavior Research Methods, 44(1), 287-304.
+Keuleers, E., Lacey, P., Rastle, K., & Brysbaert, M. (2012). 
+The British Lexicon Project: Lexical decision data for 28,730 
+monosyllabic and disyllabic English words. Behavior Research 
+Methods, 44(1), 287-304.
 }
