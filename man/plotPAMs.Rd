@@ -48,13 +48,13 @@ ld$status = 1
 cut_points = as.numeric(quantile(ld$RT[which(ld$RT <= 1085 &  ld$RT >= 500)],seq(0,1,by=0.02)))
 ped = split_data(Surv(RT, status)~., data = ld, id = "id",cut=cut_points)
 
-# Run PAM (computationally heavy, pam_ld is available upon loading the distWorkshop package
-# pam_ld = gam(ped_status ~ s(tend) + 
-#              s(logFrequency,k=4) + ti(tend,logFrequency,k=c(4,4)) + 
-#              s(Length,k=4) + ti(tend,Length,k=c(4,4)) + 
-#              s(logOLD20,k=4) + ti(tend,logOLD20,k=c(4,4)) + 
-#              s(SND20,k=4) + ti(tend,SND20,k=c(4,4)),
-#              data = ped, offset = offset, family = poisson(),control = gam.control(nthreads=10))
+Run PAM (warning: computationally heavy!)
+pam_ld = gam(ped_status ~ s(tend) + 
+             s(logFrequency,k=4) + ti(tend,logFrequency,k=c(4,4)) + 
+             s(Length,k=4) + ti(tend,Length,k=c(4,4)) + 
+             s(logOLD20,k=4) + ti(tend,logOLD20,k=c(4,4)) + 
+             s(SND20,k=4) + ti(tend,SND20,k=c(4,4)),
+             data = ped, offset = offset, family = poisson(),control = gam.control(nthreads=10))
 
 # Plot frequency effect
 plotPAMs(model = pam_ld, data = ld, predictor="logFrequency")
