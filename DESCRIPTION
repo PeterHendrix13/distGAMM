@@ -3,7 +3,7 @@ Title: Distributional analyses of linguistic data in the GAMM framework
 Version: 1.0
 Authors@R: person("Peter", "Hendrix", email = "peter.hendrix@gmail.com", role = c("aut", "cre"))
 Description: Data sets and code for distributional analyses of linguistic data in the GAMM framework. 
-Depends: R (>= 3.3.3), survival, mgcv, qgam, pammtools, RColorBrewer
+Depends: R (>= 3.5.0), survival, mgcv, qgam, pammtools, RColorBrewer
 Imports: survival, mgcv, qgam, pammtools, RColorBrewer
 License: GNU General Public License v3.0
 Encoding: UTF-8
