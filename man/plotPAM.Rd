@@ -4,11 +4,23 @@
 \alias{plotPAM}
 \title{Plot PAM}
 \usage{
-plotPAM(model, predictor, data, response = "RT", se = 2,
-  area = FALSE, num_grid = 100,
-  pallet = colorRampPalette(rev(brewer.pal(n = 7, name =
-  "RdYlBu")))(500), levs = NA, rugx = TRUE, rugy = TRUE, main = NA,
-  xlab = NA, ylab = NA, ...)
+plotPAM(
+  model,
+  predictor,
+  data,
+  response = "RT",
+  se = 2,
+  area = FALSE,
+  num_grid = 100,
+  pallet = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(500),
+  levs = NA,
+  rugx = TRUE,
+  rugy = TRUE,
+  main = NA,
+  xlab = NA,
+  ylab = NA,
+  ...
+)
 }
 \arguments{
 \item{model}{A PAM model.}

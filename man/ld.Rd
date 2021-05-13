@@ -4,7 +4,9 @@
 \name{ld}
 \alias{ld}
 \title{Lexical decision data}
-\format{An object of class \code{data.frame} with 25401 rows and 6 columns.}
+\format{
+
+}
 \source{
 Keuleers, E., Lacey, P., Rastle, K., & Brysbaert, M. (2012). The British Lexicon 
 Project: Lexical decision data for 28,730 monosyllabic and disyllabic English words. 

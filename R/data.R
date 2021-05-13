@@ -38,7 +38,7 @@
 
 #' Picture naming data
 #'
-#' Picture naming data  (Balota et al., 2007)
+#' Picture naming data  (Bates et al., 2003)
 #'
 #' @format A data frame with 484 rows 
 #' \describe{
@@ -51,6 +51,6 @@
 #' }
 #' 
 #' @source Székely, A., D’amico, S., Devescovi, A., Federmeier, K., Herron, D., Iyer, G., ... & Bates, E. (2003). 
-#' Timed picture naming: Extended norms and validation against previous studies. Behavior Research Methods, 
-#' Instruments, & Computers, 35(4), 621-633.
+#' Timed picture naming in seven languages. Bates, E., D'Amico, S., Jacobsen, T., Szekely, A., 
+#' Andonova, E., et al. (2003). Psychonomic Bulletin & Review, 10(2), 344-380.
 "pn"

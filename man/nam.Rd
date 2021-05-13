@@ -4,7 +4,9 @@
 \name{nam}
 \alias{nam}
 \title{Word naming data}
-\format{An object of class \code{data.frame} with 37107 rows and 6 columns.}
+\format{
+
+}
 \source{
 Balota, D. A., Yap, M. J., Hutchison, K. A., Cortese, M. J., Kessler, B., Loftis, B., ... 
 & Treiman, R. (2007). The English lexicon project. Behavior Research Methods, 39(3), 445-459.
