@@ -64,12 +64,12 @@ ped = split_data(Surv(RT, status)~., data = ld, id = "id",
                    cut = cut_points)
 
 # Run PAM (warning: computationally heavy)
-pam_ld = gam(ped_status ~ s(tend) + 
+pam_ld = pamm(ped_status ~ s(tend) + 
              s(logFrequency) + ti(tend, logFrequency) + 
              s(Length) + ti(tend, Length) + 
              s(logOLD20) + ti(tend, logOLD20) + 
              s(SND20) + ti(tend, SND20),
-             data = ped, offset = offset, family = poisson())
+             data = ped)
 
 # Plot frequency effect
 plotPAM(model = pam_ld, data = ld, predictor = "logFrequency")
